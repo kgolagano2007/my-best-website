@@ -1,0 +1,82 @@
+* {
+    font-family: "Exo", sans-serif;
+}
+
+h1 {
+    color: rgb(50, 187, 205);
+}
+
+h2 {
+    color: rgb(233, 0, 0);
+}
+
+.list-title {
+    color: blue;
+}
+
+.family-img {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.2;
+    max-width: 90%;
+}
+
+header {
+    background-color: black;
+    text-align: center;
+}
+
+.main {
+    padding-left: 5px;
+}
+
+img {
+    margin-left: 5px;
+}
+
+style.css {
+    margin: 0;
+    padding: o;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    /* min-height: 100vh; */
+    justify-content: center;
+    align-items: center;
+}
+
+#Substance_Abuse {
+    /* background-image: url("./images/substance-abuse.jpeg"); */
+    background-repeat: no-repeat;
+    background-size: 200px 500px;
+}
+
+.button {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    padding: 20px 40px;
+    border-radius: 8px;
+    color: aqua;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0,15;
+    transition: 0,75;
+}
+
+.button-1 {
+    color: blue;
+    border: 3p solid
+}
+
+.button-1:hover {
+    color: #092eaa;
+}
+
