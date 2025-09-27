@@ -141,7 +141,7 @@
  <section>
     <iframe src="https://youtu.be/-avkQxgJkA0?si=wO7WKPp7jp8oW1uY">The browser does not support videos.</iframe>
  </section>
- 
+
  <h3 id="Images-good-bad">Images good/bad</h3>
  
  <p class="list-title">Good</p>
@@ -150,9 +150,112 @@
  <p class="list-title">Bad</p>
  <img src="./images/download.jpg">
 
+<section id="comments-sec">
+    <h2>Comments</h1>
+    
+    <section class="comment-form">
+        <h3>Add a Comment</h3>
+        <textarea id="commentText" placeholder="Write your comment here..."></textarea>
+        <button onclick="addComment()">Post Comment</button>
+    </section>
 
+    <section id="error"></section>
+    <section id="comments"></section>
+</section>
     
 <script src="https://katlehomyezabbd.github.io/ikusasa-lethu-comments/comments-service.js"></script>
+<script>
+  const STUDENT_NUMBER = '002';
+  const SITE_ID = 'https://kgolagano2007.github.io/my-best-website/';
+
+  // Keep a local array of comments
+  let localComments = [];
+
+  loadComments();
+
+  async function loadComments() {
+    try {
+      document.getElementById('comments').innerHTML =
+        '<div class="loading">Loading comments...</div>';
+      document.getElementById('error').innerHTML = '';
+
+      localComments = await getComments(STUDENT_NUMBER, SITE_ID);
+
+      renderComments();
+    } catch (error) {
+      document.getElementById('error').innerHTML =
+        `<div class="error">Error loading comments: ${error.message}</div>`;
+      document.getElementById('comments').innerHTML = '';
+    }
+  }
+
+  function renderComments() {
+    if (localComments.length === 0) {
+      document.getElementById('comments').innerHTML =
+        '<p>No comments yet. Be the first to comment!</p>';
+      return;
+    }
+
+    const html = localComments.map(comment => `
+      <div class="comment" data-id="${comment.id}">
+        <div class="comment-header">
+          <div class="comment-meta">
+            <strong>${comment.sender || 'Anonymous'}</strong> - 
+            ${new Date(comment.ts).toLocaleString()}
+          </div>
+          <button class="delete-btn" onclick="removeComment('${comment.id}')">Delete</button>
+        </div>
+        <div>${comment.text}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('comments').innerHTML = html;
+  }
+
+  async function addComment() {
+    const commentText = document.getElementById('commentText').value.trim();
+
+    if (!commentText) {
+      document.getElementById('error').innerHTML =
+        '<div class="error">Please enter a comment</div>';
+      return;
+    }
+
+    try {
+      document.getElementById('error').innerHTML = '';
+
+      // Post comment and get the returned JSON
+      const newComment = await postComment(STUDENT_NUMBER, SITE_ID, commentText, "Me");
+
+      // Clear textarea
+      document.getElementById('commentText').value = '';
+
+      // Optimistically add to local comments & render immediately
+      localComments.unshift(newComment);
+      renderComments();
+
+    } catch (error) {
+      document.getElementById('error').innerHTML =
+        `<div class="error">Error posting comment: ${error.message}</div>`;
+    }
+  }
+
+  async function removeComment(commentId) {
+    try {
+      document.getElementById('error').innerHTML = '';
+
+      await deleteComment(STUDENT_NUMBER, SITE_ID, commentId);
+
+      // Remove from local array and re-render without a reload
+      localComments = localComments.filter(c => c.id !== commentId);
+      renderComments();
+
+    } catch (error) {
+      document.getElementById('error').innerHTML =
+        `<div class="error">Error deleting comment: ${error.message}</div>`;
+    }
+  }
+</script>
 </body>
 
 
