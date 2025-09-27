@@ -85,3 +85,23 @@ style.css {
     color: #092eaa;
 }
 
+/* CSS */
+float {
+position: fixed; /* Keeps the button in a fixed position */
+width: 60px;
+height: 60px;
+bottom: 40px; /* Distance from the bottom of the viewport */
+right: 40px; /* Distance from the right of the viewport */
+background-color: #0C9; /* Button color */
+color: #FFF; /* Text color */
+border-radius: 50%; /* Makes the button circular */
+text-align: center;
+box-shadow: 2px 2px 3px #999; /* Adds a subtle shadow */
+z-index: 1000; /* Ensures it stays above other elements */
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 2rem;
+font-weight: bold;
+text-decoration: none; /* Removes underline from links */
+}
