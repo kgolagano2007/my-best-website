@@ -26,6 +26,11 @@ header {
     text-align: center;
 }
 
+header img {
+    width: 100px;
+    height: 100px;
+}
+
 .main {
     padding-left: 5px;
 }
