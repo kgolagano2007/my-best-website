@@ -105,3 +105,9 @@ font-size: 2rem;
 font-weight: bold;
 text-decoration: none; /* Removes underline from links */
 }
+
+#vids {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
