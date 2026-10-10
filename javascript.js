@@ -31,9 +31,9 @@ function handleCellClick(event) {
 
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
 
-    // if (boardState[clickedCellIndex] !== "" || !isGameActive) {
-    //     return;
-    // }
+    if (boardState[clickedCellIndex] !== "" || !isGameActive) {
+        return;
+    }
 
     updateCell(clickedCell, clickedCellIndex);
     validateResult();
