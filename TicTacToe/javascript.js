@@ -11,14 +11,15 @@ let boardState = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let isGameActive = true;
 
-const winningConditions = [,
-    ,
-    ,
-    ,
-    ,
-    ,
-    ,
-    [2, 4, 6]
+const winningConditions = [
+    [2, 5, 8],
+    [1, 4, 7],
+    [0, 3, 6],
+    [6, 7, 8],
+    [3, 4, 5],
+    [0, 1, 2],
+    [2, 4, 6],
+    [0, 4, 8],
 ];
 
 function handleCellClick(event) {
@@ -35,8 +36,8 @@ function handleCellClick(event) {
     // }
 
     updateCell(clickedCell, clickedCellIndex);
+    validateResult();
     changePlayer();
-    // validateResult();
 }
 
 function updateCell(cell, index) {
@@ -56,7 +57,8 @@ function changePlayer() {
 
 function validateResult() {
     let roundWon = false;
-
+    console.log(boardState);
+    
     for (let i = 0; i < winningConditions.length; i++) {
         const winCondition = winningConditions[i];
         let a = boardState[winCondition[0]];
@@ -68,6 +70,7 @@ function validateResult() {
         }
         if (a === b && b === c) {
             roundWon = true;
+            console.log("PLAYER WON "+ currentPlayer);
             break;
         }
     }
@@ -91,7 +94,7 @@ function restartGame() {
     boardState = ["", "", "", "", "", "", "", "", ""];
     isGameActive = true;
     currentPlayer = "X";
-    // statusDisplay.innerHTML = `Player <span style="color: #00d2ff">X</span>'s turn`;
+    statusDisplay.innerHTML = `Player <span style="color: #00d2ff">X</span>'s turn`;
 
     cells.forEach(cell => {
         cell.textContent = "";
