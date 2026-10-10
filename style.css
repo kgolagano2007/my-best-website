@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e1e2f, #252542);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #00d2ff;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+}
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns of equal width */
+  grid-template-rows: repeat(3, 1fr);    /* 3 rows of equal height */
+  gap: 10px;                             /* The spacing between cells */
+  width: 300px;                          /* Overall width of the board */
+  height: 300px;                         /* Overall height of the board */
+}
+
+.status {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-weight: 500;
+    color: #a0a0c0;
+}
+
+.status span {
+    font-weight: bold;
+    color: #00d2ff;
+}
+
+/* .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+} */
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #2e2e48;
+    border: none;
+    border-radius: 12px;
+    font-size: 2.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.cell:hover {
+    background-color: #3d3d5c;
+    transform: scale(1.03);
+}
+
+.cell.x {
+    color: #00d2ff;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+.cell.o {
+    color: #ff007f;
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+}
+
+.cell:disabled {
+    cursor: not-allowed;
+}
+
+.reset-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5pc;
+}
+
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 127, 0.6);
+}
+
+.restart-btn:active {
+    transform: translateY(1px);
+}
+
+
